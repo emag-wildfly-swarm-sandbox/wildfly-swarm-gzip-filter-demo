@@ -15,9 +15,8 @@ public class App {
 
     UndertowFraction undertowFraction = UndertowFraction.createDefaultFraction();
 
-    undertowFraction.filterConfiguration(new FilterConfiguration().gzip(GZIP_FILTER_KEY));
-
-    undertowFraction.subresources()
+    undertowFraction
+      .filterConfiguration(new FilterConfiguration().gzip(GZIP_FILTER_KEY)).subresources()
       .server("default-server").subresources()
       .host("default-host")
       .filterRef(GZIP_FILTER_KEY, f -> f.predicate("path-suffix['.css']"));
